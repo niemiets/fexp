@@ -1,2 +1,2 @@
 # fexp
-File explorer written in C++.
+Console file explorer written in C++.
