@@ -1,16 +1,33 @@
-CC = g++
-CFLAGS = 
-LDFLAGS = -lncurses -DNCURSES_STATIC
+CPPFLAGS :=
+CFLAGS := 
+LDFLAGS := -lncurses -DNCURSES_STATIC
+LDLIBS :=
+
+SRC_DIR := ./src
+OBJ_DIR := ./obj
+BUILD_DIR := ./build
+
+EXE := $(BUILD_DIR)/main
+
+SRCS := $(wildcard $(SRC_DIR)/*.cpp)
+OBJS := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 
 .PHONY: default all clean
 
 default: all
 
-all: main
+all: $(EXE)
 
-main: main.cpp
-	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
+$(EXE): $(OBJS) | $(BUILD_DIR)
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR) $(OBJ_DIR):
+	mkdir -p $@
 
 clean:
-	help
+	@$(RM) -rv $(BUILD_DIR) $(OBJ_DIR)
 
+-include $(OBJS:.o=.d)
