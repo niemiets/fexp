@@ -17,16 +17,23 @@ class App {
         App(const App&) = delete;
         App& operator=(const App&) = delete;
 
-        static void Init(AppOptions options = AppOptions{});
+        static void Init(const AppOptions& options = AppOptions{});
         static void Destroy();
 
         static App& GetInstance();
 
         void run();
+
+        App& addOnKey(void (*func)(char key));
+        App& addOnMouse(void (*func)(const MEVENT &mouse));
     
     private:
         App();
         ~App();
+
+        void handleInput();
+
+        void onInput();
 };
 
 #endif
