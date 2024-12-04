@@ -1,15 +1,17 @@
-#include <ncurses/ncurses.h>
+#include <thread>
+
+#include <ncursesw/ncurses.h>
 
 #include "App.h"
 
 static App* s_Instance = nullptr;
 
-void App::Init(AppOptions options = AppOptions{}) {
+void App::Init(const AppOptions& options) {
     initscr();
 }
 
 void App::Destroy() {
-
+    endwin();
 }
 
 App& App::GetInstance() {
@@ -17,4 +19,16 @@ App& App::GetInstance() {
         s_Instance = new App();
 
     return *s_Instance;
+}
+
+void App::run() {
+    std::thread inputThread(handleInput, this);
+}
+
+void App::handleInput() {
+
+}
+
+void App::onInput() {
+
 }
