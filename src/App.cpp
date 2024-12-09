@@ -1,6 +1,6 @@
 #include <thread>
 
-#include <ncursesw/ncurses.h>
+#include <ncurses/ncurses.h>
 
 #include "App.h"
 

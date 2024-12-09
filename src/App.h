@@ -1,6 +1,8 @@
 #ifndef APP_H
 #define APP_H
 
+#include <cstdint>
+
 union AppOptions {
     uint8_t value;
 
@@ -28,8 +30,8 @@ class App {
         App& addOnMouse(void (*func)(const MEVENT &mouse));
     
     private:
-        App();
-        ~App();
+        App() = default;
+        ~App() = default;
 
         void handleInput();
 
