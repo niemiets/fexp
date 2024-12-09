@@ -8,6 +8,26 @@ static App* s_Instance = nullptr;
 
 void App::Init(const AppOptions& options) {
     initscr();
+
+    if (options.flags.cbreak)
+        cbreak();
+    else
+        nocbreak();
+    
+    if (options.flags.echo)
+        echo();
+    else
+        noecho();
+    
+    if (options.flags.nl)
+        nl();
+    else
+        nonl();
+    
+    if (options.flags.raw)
+        raw();
+    else
+        noraw();
 }
 
 void App::Destroy() {
