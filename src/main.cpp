@@ -1,4 +1,4 @@
-#include <ncurses/ncurses.h>
+#include <ncursesw/ncurses.h>
 
 #include "App.h"
 
