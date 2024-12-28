@@ -1,3 +1,6 @@
 obj
-build
+build/debug/*
+build/release/*
+cmake-build-debug
 .vscode
+.idea

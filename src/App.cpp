@@ -42,7 +42,7 @@ App& App::GetInstance() {
 }
 
 void App::run() {
-    std::thread inputThread(handleInput, this);
+    std::thread inputThread(&App::handleInput, this);
 }
 
 void App::handleInput() {
