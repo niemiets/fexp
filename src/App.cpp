@@ -32,6 +32,8 @@ void App::Init(const AppOptions& options) {
 
 void App::Destroy() {
     endwin();
+
+    s_Instance = nullptr;
 }
 
 App& App::GetInstance() {
