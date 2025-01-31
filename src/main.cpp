@@ -1,12 +1,26 @@
 #include <ncursesw/ncurses.h>
 
-#include "App.h"
+#include "app/App.h"
 
 int main()
 {
-    App::Init();
+    App::Init(
+		{
+			.flags = {
+				.keypad = true,
+				
+			}
+		},
+		{
+		
+		}
+	);
 
-    const App& app = App::GetInstance();
+    App& app = App::GetInstance();
+	
+	app.run();
+	
+	App::Destroy();
 
     return 0;
 }
