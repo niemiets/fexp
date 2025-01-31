@@ -15,8 +15,6 @@ include_directories(${CURSES_INCLUDE_DIR})
 
 file(GLOB_RECURSE SOURCES "src/*.h" "src/*.cpp")
 
-message(${SOURCES})
-
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_compile_features(${PROJECT_NAME}
