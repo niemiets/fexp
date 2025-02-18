@@ -2,12 +2,17 @@
 
 #include "Window.h"
 
-Window::Window(int nlines, int ncols, int begin_y, int begin_x)
+Window::Window(WindowOptions winOpt)
 {
-	this->wnd = newwin(nlines, ncols, begin_y, begin_x);
+	this->wnd = newwin(winOpt.nlines, winOpt.ncols, winOpt.begin_y, winOpt.begin_x);
 }
 
 Window::~Window()
 {
 	delwin(this->wnd);
+}
+
+WINDOW* Window::getHandle()
+{
+	return this->wnd;
 }

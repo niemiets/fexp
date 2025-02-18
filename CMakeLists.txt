@@ -21,7 +21,7 @@ target_compile_features(${PROJECT_NAME}
     PUBLIC cxx_std_20
 )
 
-target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES} panelw)
 
 target_compile_options(${PROJECT_NAME}
     PUBLIC -DNCURSES_STATIC

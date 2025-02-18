@@ -3,11 +3,20 @@
 
 #include <ncursesw/ncurses.h>
 
+struct WindowOptions {
+	int nlines  = 0;
+	int ncols   = 0;
+	int begin_y = 0;
+	int begin_x = 0;
+};
+
 class Window
 {
 	public:
-		Window(int nlines = 0, int ncols = 0, int begin_y = 0, int begin_x = 0);
+		Window(WindowOptions winOpt = {});
 		~Window();
+		
+		WINDOW* getHandle();
 		
 	private:
 		WINDOW *wnd;
