@@ -7,7 +7,7 @@
 
 #include "App.h"
 #include "../term/TermOpts.h"
-#include "window/directory/DirectoryWindow.h"
+#include "panel/directory/DirectoryPanel.h"
 
 namespace fs = std::filesystem;
 
@@ -20,7 +20,7 @@ void App::Init(const union AppOptions &appOpts, const union TermOptions &termOpt
 	processTermOpts(termOpts);
 	ProcessAppOpts(appOpts);
 	
-	DirectoryWindow dirWnd;
+	DirectoryPanel dirPan;
 	
 	// std::string path = "/";
 	//
