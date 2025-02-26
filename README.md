@@ -1,2 +1,2 @@
-# fexp
-Console file explorer written in C++.
+# fexpy
+Console file explorer written in python.
