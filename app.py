@@ -24,10 +24,20 @@ class App:
     def start(self):
         self.setup()
 
+        dir_win = curs.newwin(curs.LINES, curs.COLS, 0, 0)
+
+        dir_pan = DirectoryPanel(sys.argv[0], dir_win)
+
+        self.panels.append(dir_pan)
+
+        dir_win.refresh()
+
         self.running = True
 
         while self.running:
             self.handle_input()
+
+        self.stop()
 
     def stop(self):
         curs.endwin()
@@ -39,8 +49,9 @@ class App:
         curs.cbreak()
         self.scr.keypad(True)
 
-        dir_win = curs.newwin(curs.LINES, curs.COLS, 0, 0)
-        self.panels = [DirectoryPanel(sys.argv[0], dir_win)]
+        self.scr.refresh()
+
+        self.panels = []
 
     def get_focused(self):
         return self.panels[self.focused]
@@ -48,9 +59,11 @@ class App:
     def handle_input(self):
         character: int = self.scr.getch()
 
-        match(character):
+        match character:
             case curs.KEY_MOUSE:
                 self.handle_mouse()
+            case 546:
+                pass
             case _:
                 self.handle_key(character)
 
