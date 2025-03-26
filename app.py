@@ -1,3 +1,4 @@
+import curses
 import sys
 
 import curses as curs
@@ -48,6 +49,8 @@ class App:
         curs.noecho()
         curs.cbreak()
         self.scr.keypad(True)
+        self.scr.nodelay(True)
+        curs.mousemask(curs.ALL_MOUSE_EVENTS)
 
         self.scr.refresh()
 
@@ -57,13 +60,14 @@ class App:
         return self.panels[self.focused]
 
     def handle_input(self):
-        character: int = self.scr.getch()
+        try:
+            character: int = self.scr.getch()
+        except curses.error:
+            return
 
         match character:
             case curs.KEY_MOUSE:
                 self.handle_mouse()
-            case 546:
-                pass
             case _:
                 self.handle_key(character)
 
@@ -72,5 +76,5 @@ class App:
 
         self.get_focused().on_mouse(id, x, y, z, bstate)
 
-    def handle_key(self, key):
+    def handle_key(self, key: int):
         self.get_focused().on_key(key)
